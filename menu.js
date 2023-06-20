@@ -9,6 +9,8 @@ function main(){
 
     
     let rifa = []
+    let contador = 0
+    let valor_plataforma = 0
     while(opcao != 0){
         if(opcao === 1){
             
@@ -29,6 +31,7 @@ function main(){
             const nome_rifa = question('Digite o nome: ')
             rifa[numero-1].nome = nome_rifa
             console.log('Nome inserido com sucesso!')
+            contador++
             enter_limpar_tela()
         }else if(opcao === 3){
             
@@ -36,13 +39,18 @@ function main(){
             console.log('Valor do ponto cadastrado!')
             enter_limpar_tela()
         }else if(opcao === 4){
-            const valor_plataforma = pedir_numero('Digite o valor de uso da plataforma (%): ')
+            valor_plataforma = pedir_numero('Digite o valor de uso da plataforma (%): ')
             console.log('Valor cadastrado com sucesso!')
             enter_limpar_tela()
         }else if(opcao === 5){
             console.log('Esses são os pontos da rifa e seus respectivos nomes: ')
             console.log(rifa)
             enter_limpar_tela()
+        }else if(opcao === 6){
+            const valor_arrecadado = contador * valor_ponto
+            const valor_da_plataforma = valor_arrecadado * (valor_plataforma/100)
+            console.log(`Valor arrecadado é de R$${valor_arrecadado.toFixed(2)}`)
+            console.log(`Valor para a plataforma é de R$${valor_da_plataforma.toFixed(2)}`)
         }
 
 
