@@ -12,6 +12,6 @@ export function pedir_numero(label = 'Digite um número: '){
 }
 
 export function enter_limpar_tela(){
-    console.log(question('>>> Pressione Enter para confirmar...'))
+    console.log(question('>>> Pressione Enter para continuar...'))
     console.clear()
 }

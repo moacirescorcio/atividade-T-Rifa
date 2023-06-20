@@ -11,8 +11,9 @@ function main(){
     let rifa = []
     while(opcao != 0){
         if(opcao === 1){
-            cabecalho()
+            
             const numero_de_pontos = pedir_numero('Digite o número de pontos da rifa: ')
+            enter_limpar_tela()
             let numeros_rifa = {}
             for(let i = 1; i <= numero_de_pontos; i++){
                 numeros_rifa = {
@@ -23,10 +24,25 @@ function main(){
             }
             
         }else if(opcao === 2){
-            console.log(`\n${rifa}`)
+            console.log(rifa)
             const numero = pedir_numero('Em qual número deseja cadastrar? ')
-            const nome = question('Digite o nome: ')
-            rifa[numero-1][numero]
+            const nome_rifa = question('Digite o nome: ')
+            rifa[numero-1].nome = nome_rifa
+            console.log('Nome inserido com sucesso!')
+            enter_limpar_tela()
+        }else if(opcao === 3){
+            
+            const valor_ponto = pedir_numero('Digite o valor do ponto da rifa: ')
+            console.log('Valor do ponto cadastrado!')
+            enter_limpar_tela()
+        }else if(opcao === 4){
+            const valor_plataforma = pedir_numero('Digite o valor de uso da plataforma (%): ')
+            console.log('Valor cadastrado com sucesso!')
+            enter_limpar_tela()
+        }else if(opcao === 5){
+            console.log('Esses são os pontos da rifa e seus respectivos nomes: ')
+            console.log(rifa)
+            enter_limpar_tela()
         }
 
 
