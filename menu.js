@@ -176,6 +176,7 @@ function cabecalho(){
     7 - Quantos números serão sorteados
     8 - Sortear número(s)
     9 - Dados Gerais
+    10 - Resetar
     0 - Sair
     `)
 }
