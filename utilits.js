@@ -15,3 +15,14 @@ export function enter_limpar_tela(){
     console.log(question('>>> Pressione Enter para continuar...'))
     console.clear()
 }
+
+export function pedir_nome(label = 'Digite um nome: '){
+    let nome = (question(label))
+    
+    while( nome === '' || !isNaN(nome)){
+        console.log('Valor inválido! Insira um nome')
+        nome = question(label)
+    }
+    
+    return nome
+}
