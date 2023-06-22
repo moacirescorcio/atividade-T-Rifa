@@ -118,6 +118,7 @@ function main(){
             let resposta = pedir_nome('>>> Realmente deseja excluir os dados? Reponda sim ou não ').toLowerCase()
             if(resposta === 'sim'){
                 excluir_dados()
+                rifa = []
                 gravar_dados(rifa)
                 console.log('Dados excluídos com sucesso!')
             }else{
@@ -145,8 +146,6 @@ function excluir_dados() {
     fs.truncate(filePath, 0, function(err) {
       if (err) {
         console.log('Ocorreu um erro ao excluir os dados do arquivo:', err);
-      } else {
-        console.log('Dados do arquivo excluídos com sucesso!');
       }
     });
   }
