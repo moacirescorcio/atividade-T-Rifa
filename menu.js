@@ -8,12 +8,14 @@ function main(){
     let opcao = pedir_numero('\n>>> Digite um opção: ')
     enter_limpar_tela()
 
+    //dados globais
     let numeros_rifa = {}
     let rifa = inicializacao('rifa')
     let contador = 0
     let valor_plataforma = 0
     let quantidade_de_num_sorteados = 0
     let numero_de_pontos = 0
+    let valor_ponto = 0
     while(opcao != 0){
         if(opcao === 1){
             
@@ -41,7 +43,7 @@ function main(){
         //numero 3
         }else if(opcao === 3){
             
-            const valor_ponto = pedir_numero('Digite o valor do ponto da rifa: ')
+            valor_ponto = pedir_numero('Digite o valor do ponto da rifa: ')
             console.log('Valor do ponto cadastrado!')
             enter_limpar_tela()
 
@@ -63,10 +65,12 @@ function main(){
             const valor_da_plataforma = valor_arrecadado * (valor_plataforma/100)
             console.log(`Valor arrecadado é de R$${valor_arrecadado.toFixed(2)}`)
             console.log(`Valor para a plataforma é de R$${valor_da_plataforma.toFixed(2)}`)
+            enter_limpar_tela()
 
         //numero 7
         }else if(opcao === 7){
             quantidade_de_num_sorteados = pedir_numero('Quantos números serão sorteados? ')
+            enter_limpar_tela()
 
         //numero 8
         }else if(opcao === 8){
@@ -110,7 +114,19 @@ function main(){
             console.log(`\n>>>Quantidade de números vendidos: ${contador_num_vendidos}`)
             console.log(`>>>Lista de números vendidos: `)
             console.log(array_vendidos)
+        }else if(opcao === 10){
+            let resposta = pedir_nome('>>> Realmente deseja excluir os dados? Reponda sim ou não ').toLowerCase()
+            if(resposta === 'sim'){
+                excluir_dados()
+                gravar_dados(rifa)
+                console.log('Dados excluídos com sucesso!')
+            }else{
+                console.log('De volta ao menu!')
+            }
+            
+            enter_limpar_tela()
         }
+        
 
 
 
@@ -118,12 +134,32 @@ function main(){
         //pedir de novo
         cabecalho()
         opcao = pedir_numero('\n>>> Digite um opção: ')
-        enter_limpar_tela()
+        //enter_limpar_tela()
     }
     gravar_dados(rifa)
+    console.log(tchaus_randomicos())
+}
+function excluir_dados() {
+    const filePath = 'rifa.txt';
+  
+    fs.truncate(filePath, 0, function(err) {
+      if (err) {
+        console.log('Ocorreu um erro ao excluir os dados do arquivo:', err);
+      } else {
+        console.log('Dados do arquivo excluídos com sucesso!');
+      }
+    });
+  }
+
+function tchaus_randomicos(){
+    const vetor_tchaus = ['Bom te ver!', 'Até a próxima!', 'Tchau, coração!', 'Se for, vá na paz!']
+    const numero_random = Math.floor(Math.random() * vetor_tchaus.length)
+    return vetor_tchaus[numero_random]
 }
 
-function inicializacao(rifa){
+function inicializacao(vetor){
+    
+    const rifa = []
     const data = fs.readFileSync('rifa.txt', 'utf-8')
     const linhas = data.split('\n')
 
@@ -131,7 +167,7 @@ function inicializacao(rifa){
         if (!linha) continue
 
         //1#moacir
-        const propriedades = line.split('#')
+        const propriedades = linha.split('#')
         //['1', 'moacir']
         const numeros_rifa = {'numero': propriedades[0],
                                 'nome': propriedades[1]}
@@ -139,6 +175,8 @@ function inicializacao(rifa){
     }
     return rifa
 }
+
+
 
 
 function gravar_dados(rifa){
