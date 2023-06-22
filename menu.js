@@ -114,6 +114,8 @@ function main(){
             console.log(`\n>>>Quantidade de números vendidos: ${contador_num_vendidos}`)
             console.log(`>>>Lista de números vendidos: `)
             console.log(array_vendidos)
+        
+        //numero 10
         }else if(opcao === 10){
             let resposta = pedir_nome('>>> Realmente deseja excluir os dados? Reponda sim ou não ').toLowerCase()
             if(resposta === 'sim'){
